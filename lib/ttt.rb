@@ -1,4 +1,4 @@
-class Position
+class Game
 	X_WIN_SCORE = 100
 	O_WIN_SCORE = -100
 	TIE_SCORE   = 0
@@ -128,16 +128,16 @@ class TTT
 
 	def play_game
 		@player = ask_for_player
-		position = Position.new
-		while !position.end?
-			puts position
+		game = Game.new
+		while !game.end?
+			puts game
 			puts
-			move_position = @player == "human" ? ask_for_move(position) : position.best_move
-			position.move(move_position)
+			move = @player == "human" ? ask_for_move(game) : game.best_move
+			game.move(move)
 			@player = other_player
 		end
-		puts position
-		position.blocked? ? (puts "draw") : "winner: #{other_player}"
+		puts game
+		game.blocked? ? (puts "draw") : "winner: #{other_player}"
 	end
 end
 
